@@ -26,9 +26,14 @@ public class ProductService {
         return this.repository.findAll();
     }
 
+    public Product find(Long id){
+        return this.repository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException(id));
+    }
+
     public Product alter(Long id, ProductDTO productDTO){
         Product product = this.repository.findById(id)
-                .orElseThrow(ProductNotFoundException::new);
+                .orElseThrow(() -> new ProductNotFoundException(id));
 
         if(!productDTO.name().isEmpty())
             product.setName(productDTO.name());
@@ -43,7 +48,7 @@ public class ProductService {
 
     public void delete(Long id){
         Product product = this.repository.findById(id)
-                .orElseThrow(ProductNotFoundException::new);
+                .orElseThrow(() -> new ProductNotFoundException(id));
 
         this.repository.delete(product);
     }
