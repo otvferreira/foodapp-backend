@@ -30,7 +30,7 @@ public class RestaurantService {
 
     public Restaurant alter(Long id, RestaurantDTO restaurantDTO){
         Restaurant alterRestaurant = this.repository.findById(id)
-                .orElseThrow(RestaurantNotFoundException::new);
+                .orElseThrow(() -> new RestaurantNotFoundException(id));
 
         if(!restaurantDTO.name().isEmpty())
             alterRestaurant.setName(restaurantDTO.name());
@@ -45,7 +45,7 @@ public class RestaurantService {
 
     public void delete(Long id){
         Restaurant alterRestaurant = this.repository.findById(id)
-                .orElseThrow(RestaurantNotFoundException::new);
+                .orElseThrow(() -> new RestaurantNotFoundException(id));
 
         this.repository.delete(alterRestaurant);
     }
