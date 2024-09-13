@@ -4,6 +4,7 @@ import com.gd.gdfood_api.api.V1.domain.product.Product;
 import com.gd.gdfood_api.api.V1.domain.product.dto.ProductDTO;
 import com.gd.gdfood_api.api.V1.domain.product.exceptions.ProductNotFoundException;
 import com.gd.gdfood_api.api.V1.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @Service
 public class ProductService {
 
+    @Autowired
     private ProductRepository repository;
 
     public Product create(ProductDTO productDTO){
@@ -32,8 +34,8 @@ public class ProductService {
             product.setName(productDTO.name());
         if (!productDTO.description().isEmpty())
             product.setDescription(productDTO.description());
-        if (!productDTO.value().isNaN())
-            product.setValue(productDTO.value());
+        //if (productDTO.value() != null)
+        //    product.setValue(productDTO.value());
 
         this.repository.save(product);
         return product;

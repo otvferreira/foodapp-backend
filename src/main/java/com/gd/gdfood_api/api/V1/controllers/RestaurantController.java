@@ -4,7 +4,6 @@ import com.gd.gdfood_api.api.V1.domain.restaurant.Restaurant;
 import com.gd.gdfood_api.api.V1.domain.restaurant.dto.RestaurantDTO;
 import com.gd.gdfood_api.api.V1.services.RestaurantService;
 import jakarta.websocket.server.PathParam;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
