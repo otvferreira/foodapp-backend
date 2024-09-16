@@ -20,10 +20,13 @@ public class Restaurant {
     private String name;
     private String address;
     private String phoneNumber;
+    private String userID;
 
     public Restaurant(RestaurantDTO restaurant){
         this.name = restaurant.name();
         this.address = restaurant.address();
         this.phoneNumber = restaurant.phoneNumber();
     }
+
+
 }

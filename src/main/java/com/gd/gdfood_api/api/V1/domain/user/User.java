@@ -2,6 +2,7 @@ package com.gd.gdfood_api.api.V1.domain.user;
 
 import com.gd.gdfood_api.api.V1.domain.user.dto.UserDTO;
 import com.gd.gdfood_api.api.V1.domain.user.dto.UserNoPasswordDTO;
+import com.gd.gdfood_api.api.V1.domain.user.dto.UserRestaurantDTO;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class User {
     private String image;
     private String phoneNumber;
     private boolean enable;
+    private Long restaurant;
 
     public User(UserDTO userDTO){
         this.name = userDTO.name();
@@ -44,6 +46,10 @@ public class User {
         this.image = userNoPasswordDTO.image();
         this.phoneNumber = userNoPasswordDTO.phoneNumber();
         this.enable = true;
+    }
+
+    public void userRestaurant(UserRestaurantDTO userRestaurantDTO){
+        this.restaurant = userRestaurantDTO.restaurantID();
     }
 
     public void enableDisable(){

@@ -3,6 +3,7 @@ package com.gd.gdfood_api.api.V1.services;
 import com.gd.gdfood_api.api.V1.domain.user.User;
 import com.gd.gdfood_api.api.V1.domain.user.dto.UserDTO;
 import com.gd.gdfood_api.api.V1.domain.user.dto.UserNoPasswordDTO;
+import com.gd.gdfood_api.api.V1.domain.user.dto.UserRestaurantDTO;
 import com.gd.gdfood_api.api.V1.domain.user.exceptions.UserEmailAlreadyExist;
 import com.gd.gdfood_api.api.V1.domain.user.exceptions.UserNotFoundException;
 import com.gd.gdfood_api.api.V1.repositories.UserRepository;
@@ -51,6 +52,13 @@ public class UserService {
 
         this.repository.save(alterUser);
         return alterUser;
+    }
+
+    public User alterRestaurant(UserRestaurantDTO userRestaurantDTO){
+        User user = this.repository.findByEmail(userRestaurantDTO.userEmail())
+                .orElseThrow(UserNotFoundException::new);
+
+        return user;
     }
 
 }
