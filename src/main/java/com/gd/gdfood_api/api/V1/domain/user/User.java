@@ -2,7 +2,6 @@ package com.gd.gdfood_api.api.V1.domain.user;
 
 import com.gd.gdfood_api.api.V1.domain.user.dto.UserDTO;
 import com.gd.gdfood_api.api.V1.domain.user.dto.UserNoPasswordDTO;
-import com.gd.gdfood_api.api.V1.domain.user.dto.UserRestaurantDTO;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -48,8 +47,8 @@ public class User {
         this.enable = true;
     }
 
-    public void userRestaurant(UserRestaurantDTO userRestaurantDTO){
-        this.restaurant = userRestaurantDTO.restaurantID();
+    public void userRestaurant(){
+            this.restaurant = null;
     }
 
     public void enableDisable(){

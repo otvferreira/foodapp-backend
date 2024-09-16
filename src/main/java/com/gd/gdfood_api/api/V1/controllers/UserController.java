@@ -1,5 +1,6 @@
 package com.gd.gdfood_api.api.V1.controllers;
 
+import com.gd.gdfood_api.api.V1.domain.restaurant.Restaurant;
 import com.gd.gdfood_api.api.V1.domain.user.User;
 import com.gd.gdfood_api.api.V1.domain.user.dto.UserDTO;
 import com.gd.gdfood_api.api.V1.domain.user.dto.UserNoPasswordDTO;
@@ -37,6 +38,12 @@ public class UserController {
     public ResponseEntity<User> alter(@PathParam("email") String email, @RequestBody UserNoPasswordDTO userNoPasswordDTO){
         User alteredUser = this.userService.alter(email, userNoPasswordDTO);
         return ResponseEntity.ok().body(alteredUser); // 200 - Ok
+    }
+
+    @DeleteMapping("/delete/{email}")
+    public ResponseEntity<User> delete(@PathParam("email") String email){
+        this.userService.delete(email);
+        return ResponseEntity.noContent().build();
     }
 
 }

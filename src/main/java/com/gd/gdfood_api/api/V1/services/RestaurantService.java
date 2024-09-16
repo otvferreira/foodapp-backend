@@ -74,6 +74,11 @@ public class RestaurantService {
         Restaurant alterRestaurant = this.repository.findById(id)
                 .orElseThrow(() -> new RestaurantNotFoundException(id));
 
+        User user = this.userRepository.findByRestaurant(id)
+                .orElseThrow();
+        user.userRestaurant();
+        this.userRepository.save(user);
+
         this.repository.delete(alterRestaurant);
     }
 

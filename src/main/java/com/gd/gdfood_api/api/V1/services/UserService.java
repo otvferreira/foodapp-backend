@@ -1,13 +1,12 @@
 package com.gd.gdfood_api.api.V1.services;
 
+import com.gd.gdfood_api.api.V1.domain.restaurant.exceptions.RestaurantNotFoundException;
 import com.gd.gdfood_api.api.V1.domain.user.User;
 import com.gd.gdfood_api.api.V1.domain.user.dto.UserDTO;
 import com.gd.gdfood_api.api.V1.domain.user.dto.UserNoPasswordDTO;
-import com.gd.gdfood_api.api.V1.domain.user.dto.UserRestaurantDTO;
 import com.gd.gdfood_api.api.V1.domain.user.exceptions.UserEmailAlreadyExist;
 import com.gd.gdfood_api.api.V1.domain.user.exceptions.UserNotFoundException;
 import com.gd.gdfood_api.api.V1.repositories.UserRepository;
-import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,11 +53,15 @@ public class UserService {
         return alterUser;
     }
 
-    public User alterRestaurant(UserRestaurantDTO userRestaurantDTO){
-        User user = this.repository.findByEmail(userRestaurantDTO.userEmail())
-                .orElseThrow(UserNotFoundException::new);
+    public void delete(String email){
+        User user = this.repository.findByEmail(email)
+                .orElseThrow(() -> new RestaurantNotFoundException(email));
 
-        return user;
+        if (user.getRestaurant() != null) {
+            throw new RuntimeException("Não e possível deletar um usuário que possui restaurante cadastrado." +
+                    " Delete o restaurante primeiro");
+        } else {
+            this.repository.delete(user);
+        }
     }
-
 }
