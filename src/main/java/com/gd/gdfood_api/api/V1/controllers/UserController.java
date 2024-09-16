@@ -21,12 +21,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
-    public ResponseEntity<User> create(@RequestBody UserDTO userDTO){
-        User user = this.userService.create(userDTO);
-        return ResponseEntity.ok().body(user);
-    }
-
     @GetMapping
     public ResponseEntity<List<User>> findAll(){
         List<User> users = this.userService.findAll();

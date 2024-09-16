@@ -24,8 +24,18 @@ public class RestaurantService {
         return restaurant;
     }
 
-    public List<Restaurant> listAll(){
-        return this.repository.findAll();
+    public List<Restaurant> listAll(String search) {
+        if (search == null || search.isEmpty()) {
+            return repository.findAll();
+        } else {
+            return repository.findByNameContainingIgnoreCase(search);
+        }
+    }
+
+    public Restaurant find(Long id) {
+            return repository.findById(id)
+                    .orElseThrow(() -> new RestaurantNotFoundException(id));
+
     }
 
     public Restaurant alter(Long id, RestaurantDTO restaurantDTO){

@@ -26,9 +26,14 @@ public class RestaurantController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Restaurant>> listAll() {
-        List<Restaurant> restaurants = this.service.listAll();
-        return ResponseEntity.ok().body(restaurants);
+    public List<Restaurant> searchRestaurants(@RequestParam(required = false) String search) {
+        return service.listAll(search);
+    }
+
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Restaurant> findRestaurants(@PathVariable Long id) {
+        Restaurant restaurant = service.find(id);
+        return ResponseEntity.ok().body(restaurant);
     }
 
     @PutMapping("/alter/{id}")
