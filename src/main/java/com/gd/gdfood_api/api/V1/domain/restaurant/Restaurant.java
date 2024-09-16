@@ -34,4 +34,6 @@ public class Restaurant {
         this.category = restaurant.category();
         this.stars = BigDecimal.valueOf(0.0);
     }
+
+
 }

@@ -3,7 +3,10 @@ package com.gd.gdfood_api.api.V1.services;
 import com.gd.gdfood_api.api.V1.domain.restaurant.Restaurant;
 import com.gd.gdfood_api.api.V1.domain.restaurant.dto.RestaurantDTO;
 import com.gd.gdfood_api.api.V1.domain.restaurant.exceptions.RestaurantNotFoundException;
+import com.gd.gdfood_api.api.V1.domain.user.User;
+import com.gd.gdfood_api.api.V1.domain.user.exceptions.UserNotFoundException;
 import com.gd.gdfood_api.api.V1.repositories.RestaurantRepository;
+import com.gd.gdfood_api.api.V1.repositories.UserRepository;
 import jdk.jfr.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +17,27 @@ import java.util.List;
 public class RestaurantService {
     private RestaurantRepository repository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public RestaurantService(RestaurantRepository repository){
         this.repository = repository;
     }
 
-    public Restaurant create(RestaurantDTO restaurantDTO){
+    public Restaurant create(String userEmail, RestaurantDTO restaurantDTO){
         Restaurant restaurant = new Restaurant(restaurantDTO);
+
+        User user = this.userRepository.findByEmail(userEmail)
+                .orElseThrow(UserNotFoundException::new);
+
         this.repository.save(restaurant);
+
+        if(user.getRestaurant() != null){
+            throw new RuntimeException("Usuário já possui um restaurante cadastrado.");
+        } else {
+            user.setRestaurant(restaurant.getId());
+            this.userRepository.save(user);
+        }
         return restaurant;
     }
 

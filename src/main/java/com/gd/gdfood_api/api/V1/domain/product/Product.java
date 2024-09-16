@@ -22,6 +22,7 @@ public class Product {
     private String name;
     private String description;
     //private BigDecimal value;
+    private String type;
 
     @Column(name = "restaurant_id")
     private Long restaurantId;

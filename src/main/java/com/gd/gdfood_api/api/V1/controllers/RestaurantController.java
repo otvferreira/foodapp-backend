@@ -20,8 +20,8 @@ public class RestaurantController {
     }
 
     @PostMapping
-    public ResponseEntity<Restaurant> create(@RequestBody RestaurantDTO restaurantDTO){
-        Restaurant restaurant = this.service.create(restaurantDTO);
+    public ResponseEntity<Restaurant> create(@RequestParam("userEmail") String userEmail, @RequestBody RestaurantDTO restaurantDTO){
+        Restaurant restaurant = this.service.create(userEmail, restaurantDTO);
         return ResponseEntity.ok().body(restaurant);
     }
 
