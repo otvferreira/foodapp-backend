@@ -41,6 +41,6 @@ public class Restaurant {
         this.phoneNumber = restaurant.phoneNumber();
         this.image = restaurant.image();
         this.category = restaurant.category();
-        this.stars = BigDecimal.valueOf(0.0);
+        this.stars = BigDecimal.valueOf(0.0); // Implementação de Stars por media de avaliação ficaria aqui
     }
 }
