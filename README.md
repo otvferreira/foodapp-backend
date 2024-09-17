@@ -142,19 +142,19 @@ POST /V1/product/ - Registro de Produtos.
 }
 ```
 
-**GET RESTAURANTS**
+**GET PRODUCTS**
 ```markdown
-GET /V1/product/ - Buscar restaurantes (lista).
+GET /V1/product/ - Buscar PRODUCTS (lista).
 ```
 
-**GET RESTAURANTS**
+**GET PRODUCTS**
 ```markdown
-GET /V1/product/find/{id} - Buscar restaurante.
+GET /V1/product/find/{id} - Buscar PRODUCTS.
 ```
 
-**PUT RESTAURANTS**
+**PUT PRODUCTS**
 ```markdown
-PUT /V1/product/alter/{id} - Alterar restaurante.
+PUT /V1/product/alter/{id} - Alterar PRODUCTS.
 ```
 ```json
 {
@@ -167,9 +167,9 @@ PUT /V1/product/alter/{id} - Alterar restaurante.
 }
 ```
 
-**DELETE RESTAURANTS**
+**DELETE PRODUCTS**
 ```markdown
-DELETE /V1/product/delete/{id} - Alterar restaurante.
+DELETE /V1/product/delete/{id} - Deletar PRODUCTS.
 ```
 
 
