@@ -36,6 +36,9 @@ git clone https://github.com/otvferreira/foodapp-backend.git
 ## API Endpoints
 A API possui os seguintes endpoints:
 
+**Ao rodar a API a documentação se encontra no link**
+```http://localhost:8080/swagger-ui/index.html#/```
+
 **Após o Login todas as requisições devem conter o Bearer Token**
 
 **USUARIOS**
