@@ -26,6 +26,8 @@ public class UserController {
     public ResponseEntity<List<User>> findAll(){
         List<User> users = this.userService.findAll();
         return ResponseEntity.ok().body(users);
+        // Trazendo password para mostrar na entrevista que está criptografado, em produção alterar para não retornar.
+
     }
 
     @GetMapping("/find/{email}")

@@ -65,6 +65,8 @@ public class RestaurantService {
             alterRestaurant.setAddress(restaurantDTO.address());
         if(!restaurantDTO.phoneNumber().isEmpty())
             alterRestaurant.setPhoneNumber(restaurantDTO.phoneNumber());
+        if(!restaurantDTO.category().isEmpty())
+            alterRestaurant.setCategory(restaurantDTO.category());
 
         this.repository.save(alterRestaurant);
         return alterRestaurant;
