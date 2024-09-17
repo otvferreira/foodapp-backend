@@ -1,6 +1,9 @@
 package com.gd.gdfood_api.api.V1.domain.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gd.gdfood_api.api.V1.domain.product.dto.ProductDTO;
+import com.gd.gdfood_api.api.V1.domain.restaurant.Restaurant;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,28 +24,26 @@ public class Product {
     private Long id;
     private String name;
     private String description;
-    //private BigDecimal value;
     private String type;
-
-    @Column(name = "restaurant_id")
-    private Long restaurantId;
     private boolean enable;
     private String image;
+    private BigDecimal price;
 
-    public Product(ProductDTO productDTO){
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    @JsonIgnore
+    private Restaurant restaurant;
+
+    public Product(ProductDTO productDTO, Restaurant restaurant){
         this.name = productDTO.name();
         this.description = productDTO.description();
-        //this.value = productDTO.value();
-        this.restaurantId = productDTO.restaurantId();
+        this.restaurant = restaurant;
+        this.price = productDTO.price();
         this.image  = productDTO.image();
         this.enable = true;
     }
 
     public void activate(){
-        if(this.enable) {
-            this.enable = false;
-        } else {
-            this.enable = true;
-        }
+        this.enable = !this.enable;
     }
 }

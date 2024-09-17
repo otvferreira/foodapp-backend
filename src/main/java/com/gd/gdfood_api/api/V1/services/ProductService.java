@@ -3,7 +3,10 @@ package com.gd.gdfood_api.api.V1.services;
 import com.gd.gdfood_api.api.V1.domain.product.Product;
 import com.gd.gdfood_api.api.V1.domain.product.dto.ProductDTO;
 import com.gd.gdfood_api.api.V1.domain.product.exceptions.ProductNotFoundException;
+import com.gd.gdfood_api.api.V1.domain.restaurant.Restaurant;
+import com.gd.gdfood_api.api.V1.domain.restaurant.exceptions.RestaurantNotFoundException;
 import com.gd.gdfood_api.api.V1.repositories.ProductRepository;
+import com.gd.gdfood_api.api.V1.repositories.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,9 +19,16 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
 
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+
     public Product create(ProductDTO productDTO){
-        Product product = new Product(productDTO);
+        Restaurant restaurant = restaurantRepository.findById(productDTO.restaurantId())
+                .orElseThrow(() -> new RestaurantNotFoundException("Restaurante não encontrado"));
+
+        Product product = new Product(productDTO, restaurant);
         this.repository.save(product);
+
         return product;
     }
 
