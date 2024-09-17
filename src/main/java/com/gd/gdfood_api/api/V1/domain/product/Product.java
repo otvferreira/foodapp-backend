@@ -24,7 +24,7 @@ public class Product {
     private Long id;
     private String name;
     private String description;
-    private String type;
+    private String typeFood;
     private boolean enable;
     private String image;
     private BigDecimal price;
@@ -38,6 +38,7 @@ public class Product {
         this.name = productDTO.name();
         this.description = productDTO.description();
         this.restaurant = restaurant;
+        this.typeFood = productDTO.typeFood();
         this.price = productDTO.price();
         this.image  = productDTO.image();
         this.enable = true;

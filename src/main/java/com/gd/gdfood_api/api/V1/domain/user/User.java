@@ -52,10 +52,6 @@ public class User {
     }
 
     public void enableDisable(){
-        if(!this.enable){
-            this.enable = false;
-        } else {
-            this.enable = true;
-        }
+        this.enable = !this.enable;
     }
 }
