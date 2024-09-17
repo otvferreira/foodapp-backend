@@ -81,7 +81,8 @@ PUT /V1/user/alter/otavio@example.com - Alterar um usuário
 }
 ```
 
-**RESTAURANT**
+
+
 **POST RESTAURANTS**
 ```markdown
 POST /V1/restaurant/ - Registro de Restaurantes
@@ -124,7 +125,8 @@ PUT /V1/restaurant/alter/{id} - Alterar restaurantes.
 DELETE /V1/restaurant/delete/{id} - Deletar restaurantes.
 ```
 
-**PRODUTOS**
+
+
 **POST PRODUCTS**
 ```markdown
 POST /V1/product/ - Registro de Produtos.
