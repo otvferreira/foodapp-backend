@@ -4,7 +4,7 @@
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
 
-Este projeto foi desenvolvido utilizando **Java, Java Spring e PostgreSQL no banco de dados.** 
+Este projeto foi desenvolvido utilizando **Java, Spring e PostgreSQL no banco de dados.** 
 
 API desenvolvida para o desafio da empresa Grão Direto, com o intuito de criar um Back-end e um Front-end para um aplicativo de restaurantes.
 
