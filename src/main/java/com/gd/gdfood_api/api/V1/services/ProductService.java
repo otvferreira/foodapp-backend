@@ -36,21 +36,38 @@ public class ProductService {
         return this.repository.findAll();
     }
 
-    public Product find(Long id){
-        return this.repository.findById(id)
-                .orElseThrow(() -> new ProductNotFoundException(id));
+    public List<Product> findAll(Long id, String typeFood) {
+        if (typeFood == null || typeFood.isEmpty()) {
+            return this.repository.findByRestaurant_Id(id)
+                    .orElseThrow(() -> new RestaurantNotFoundException("Restaurante não encontrado"));
+        } else {
+            return this.repository.findByRestaurant_IdAndTypeFood(id, typeFood)
+                    .orElseThrow(() -> new RestaurantNotFoundException("Restaurante não encontrado"));
+        }
     }
 
+
     public Product alter(Long id, ProductDTO productDTO){
+
         Product product = this.repository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
 
-        if(!productDTO.name().isEmpty())
+
+        if (!productDTO.name().isEmpty()) {
             product.setName(productDTO.name());
-        if (!productDTO.description().isEmpty())
+        }
+        if (!productDTO.description().isEmpty()) {
             product.setDescription(productDTO.description());
-        //if (productDTO.value() != null)
-        //    product.setValue(productDTO.value());
+        }
+        if (productDTO.price() != null) {
+            product.setPrice(productDTO.price());
+        }
+
+        if (productDTO.restaurantId() != null && !productDTO.restaurantId().equals(product.getRestaurant().getId())) {
+            Restaurant newRestaurant = restaurantRepository.findById(productDTO.restaurantId())
+                    .orElseThrow(() -> new RestaurantNotFoundException("Restaurante não encontrado"));
+            product.setRestaurant(newRestaurant);
+        }
 
         this.repository.save(product);
         return product;
